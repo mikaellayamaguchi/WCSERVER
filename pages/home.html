@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yamaguchi | Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px 40px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      border-radius: 0 0 15px 15px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 0 15px;
+      text-decoration: none;
+      color: #2980b9;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background-color: #2980b9;
+      box-shadow: 0 2px 6px rgba(41, 128, 185, 0.6);
+    }
+
+    main {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin: 40px auto;
+      max-width: 700px;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #34495e;
+      text-align: center;
+    }
+
+    footer {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 15px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      box-shadow: 0 -3px 6px rgba(0,0,0,0.05);
+      border-radius: 15px 15px 0 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WELCOME HOME</h1>
+    <nav>
+      <a href="/userPage">User</a>
+      <a href="/studentPage">Student</a>
+      <a href="/adminPage">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <p>Welcome home! Use the navigation above to visit your page.</p>
+  </main>
+
+  <footer>
+    &copy; 2025 Yamaguchi. All rights reserved.
+  </footer>
+</body>
+</html>
