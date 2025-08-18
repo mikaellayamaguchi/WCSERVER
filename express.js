@@ -9,7 +9,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const uploadDir = path.join(__dirname, 'uploads');
 
-// Create uploads folder if it doesn't exist
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
   console.log('Created uploads directory');
@@ -25,7 +24,6 @@ app.use(express.static('pages'));
 // Multer setup for file upload
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    // Use absolute path for safety
     callback(null, uploadDir);
   },
   filename: (req, file, callback) => {
@@ -80,7 +78,6 @@ app.get('/getStudent', (req, res) => {
   res.end(`Received Data: ${JSON.stringify(response)}`);
 });
 
-// POST admin form with file upload
 // POST admin form with file upload
 app.post('/postAdmin', uploadSingle.single('file'), (req, res) => {
   const response = {
