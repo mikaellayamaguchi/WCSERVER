@@ -1,16 +1,40 @@
 import express from 'express';
 import path from 'path';
+import multer from 'multer';
 import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
+const uploadDir = path.join(__dirname, 'uploads');
+
+// Create uploads folder if it doesn't exist
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+  console.log('Created uploads directory');
+}
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files
 app.use(express.static('public'));
 app.use(express.static('pages'));
 
+// Multer setup for file upload
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    // Use absolute path for safety
+    callback(null, uploadDir);
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  }
+});
+const uploadSingle = multer({ storage });
+
+// Routes from express.js
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'home.html'));
 });
@@ -56,14 +80,18 @@ app.get('/getStudent', (req, res) => {
   res.end(`Received Data: ${JSON.stringify(response)}`);
 });
 
-app.post('/postAdmin', (req, res) => {
+// POST admin form with file upload
+// POST admin form with file upload
+app.post('/postAdmin', uploadSingle.single('file'), (req, res) => {
   const response = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    file: req.file ? req.file.originalname : 'No file uploaded',
   };
   console.log("Response is: ", response);
   res.end(`Received Data: ${JSON.stringify(response)}`);
 });
+
 
 const PORT = 5000;
 
